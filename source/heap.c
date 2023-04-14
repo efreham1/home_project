@@ -2,7 +2,7 @@
 
 struct heap
 {
-    void *data_ptr
+    void *data_ptr;
 };
 
 

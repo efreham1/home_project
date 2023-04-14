@@ -31,6 +31,7 @@ node_t *node_destroy_return_next(node_t *node)
         free(node);
         return next;
     }
+    return NULL;
 }
 
 stack_t *stack_create()
@@ -50,17 +51,19 @@ void stack_push(stack_t *stack, entry_t entry)
     stack->length++;
 }
 
-entry_t *stack_pop(stack_t *stack)
+entry_t stack_pop(stack_t *stack)
 {
     if (stack->top)
     {
         entry_t entry = stack->top->entry;
         stack->top = node_destroy_return_next(stack->top);
         stack->length--;
+        return entry;
     }
+    return (entry_t) NULL;
 }
 
-void stack_empty(stack_t *stack)
+bool stack_empty(stack_t *stack)
 {
     return stack->length==0;
 }

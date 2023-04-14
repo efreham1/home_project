@@ -1,5 +1,5 @@
 SRCDIR = source
-EXEDIR = executable
+EXEDIR = exe
 OBJDIR = objects
 TESTDIR = test
 DEMODIR = demo
@@ -8,7 +8,7 @@ CC = gcc
 
 FLAGS = -I SRCDIR -Wall -g 
 
-LIBS = -lpthread -lcunit
+LIBS =  -lcunit
 
 MODULES = find_stack heap linked_list stack
 
@@ -25,16 +25,16 @@ $(EXEDIR)/%: $(SRCDIR)/%.c $(OBJS)
 $(EXEDIR)/test_%: $(TESTDIR)/test_%.c $(OBJS)
 	$(CC) $(FLAGS) $^ -o $@ $(LIBS)'
 	
-test_%: $(EDIR)/test_%
+test_%: $(EXEDIR)/test_%
 	valgrind --gen-suppressions=all --error-exitcode=1 --leak-check=full --suppressions=./test/valgrind_supp.supp --track-origins=yes --show-leak-kinds=all ./$^
 
-test_all: $(TESTS)
+test: $(TESTS)
 	$(patsubst %,make test_% && ,$(MODULESTEST)) true
 
 clean:
-	rm -rf exe/*
-	rm -rf obj/*
+	rm -rf $(EXEDIR)/*
+	rm -rf $(OBJDIR)/*
 
 .PHONY: clean test_%
 
-.PRECIOUS: $(ODIR)/%.o $(EDIR)/%
+.PRECIOUS: $(ODIR)/% $(EDIR)/%

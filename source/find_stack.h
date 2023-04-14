@@ -5,7 +5,7 @@ typedef struct stack stack_t;
 /// @brief Initiate a stack object
 /// @param frames How many stack frames that should be disregarded
 /// @return The initiated stack object with start on the specified stackframe
-stack_t *initiate_stack(int frames);
+stack_t *initiate_stack(void *stack_start);
 
 /// @brief Get all potential pointers located on the stack frames between start and current
 /// @param stack The stack object

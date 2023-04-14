@@ -7,10 +7,10 @@ struct stack
 };
 
 
-stack_t *initiate_stack(int frames)
+stack_t *initiate_stack(void *stack_start)
 {
     stack_t *stack = malloc(sizeof(stack_t));
-    stack->start = (unsigned long) __builtin_frame_address(frames);
+    stack->start = (unsigned long) stack_start;
     return stack;
 }
 

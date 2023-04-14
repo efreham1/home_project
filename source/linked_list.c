@@ -2,18 +2,18 @@
 
 typedef struct node node_t;
 
+struct node
+{
+    entry_t entry;
+    node_t *next;
+};
+
 struct linked_list
 {
     node_t sentinel;
     int length;
     entry_eq_function eq_fun;
     entry_gt_function gt_fun;
-};
-
-struct node
-{
-    entry_t entry;
-    node_t *next;
 };
 
 

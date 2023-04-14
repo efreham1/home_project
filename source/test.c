@@ -1,36 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <pthread.h>
 
-void *print(void *argument)
+void *address()
 {
-    printf("%s\n", (char *) argument);
+
+    return __builtin_frame_address(0);
 }
 
 int main(void)
 {
-    pthread_t thread_id;
-
-    char *string = calloc(11, 1);
-    char *string1 = "abcdef";
-    char *string2 = "fedcba";
-    for (size_t i = 0; i < 7; i++)
-    {
-        string[i] = string1[i];
-    }
-    
-
-    pthread_create(&thread_id, NULL, print, string);
-
-    for (size_t i = 0; i < 7; i++)
-    {
-        string[i] = string2[i];
-    }
-
-    printf("Hello!\n");
-    printf("Hello!\n");
-    printf("Hello!\n");
-
-    pthread_join(thread_id, NULL);
+    //void *start = address();
+    int i = 3;
+    int j = 5;
+    int k;
+    int l;
+    int m;
+    int n;
+    int o;
+    int p;
+    void *ptr = malloc(8);
+    printf("%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n%p\n", NULL, &i, &j, &k, &l, &m, &n, &o, &p, &ptr, NULL);
 }
